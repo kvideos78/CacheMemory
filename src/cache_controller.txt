@@ -1,0 +1,19 @@
+`timescale 1ns / 1ps
+module cache_controller(
+	input			clock,		//Clock input same as CPU and Memory controller(if MemController work on same freq.)
+	input			reset,	//Active Low Asynchronous Reset Signal Input
+
+	inout	[DATAWIDTH-1:0]	data_cpu,	//Data bus from CPU
+	inout	[DATAWIDTH-1:0]	data_mem,	//Data bus to Main Memory
+	
+	input	[AWIDTH-1:0]	addr_cpu,	//Address bus from CPU
+	output	reg[AWIDTH-1:0]	addr_mem,	//Address bus to Main Memory
+
+	input			read_cpu_enable,		//Read signal from CPU
+	input			write_cpu_enable,		//WRITE signal from CPU
+
+	output	reg		read_mem_enable,		//Read signal to Main Memory
+	output	reg		write_mem_enable,		//Write signal to Main Memory
+
+	output	reg		stall_cpu,	//Stall Signal to CPU, to halt the CPU while undergoing any other operation
+	input			ready_memory	//Ready signal from Main memory, to know the status of memory
